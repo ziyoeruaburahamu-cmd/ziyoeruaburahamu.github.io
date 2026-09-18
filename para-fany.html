@@ -1,0 +1,1701 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      user-scalable=no">
+
+<title>Para ti, Fany ❤️</title>
+
+<style>
+
+/* =========================================================
+   BASE
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            rgba(110,150,205,.18),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(185,90,125,.07),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #050b16 0%,
+            #081222 50%,
+            #0d1828 100%
+        );
+
+    color: #f7f3ef;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+#stars {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+.star {
+
+    position: absolute;
+
+    width: 2px;
+    height: 2px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    opacity: .4;
+
+    animation:
+        twinkle 3s infinite ease-in-out;
+}
+
+@keyframes twinkle {
+
+    0%,100% {
+        opacity: .15;
+        transform: scale(.7);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   AURORA
+========================================================= */
+
+.aurora {
+
+    position: fixed;
+
+    width: 150%;
+    height: 45vh;
+
+    top: -10vh;
+    left: -25%;
+
+    pointer-events: none;
+
+    background:
+
+        radial-gradient(
+            ellipse at 25% 50%,
+            rgba(71,190,177,.11),
+            transparent 45%
+        ),
+
+        radial-gradient(
+            ellipse at 70% 45%,
+            rgba(122,94,199,.10),
+            transparent 45%
+        );
+
+    filter: blur(40px);
+
+    animation:
+        aurora 12s ease-in-out infinite alternate;
+
+    z-index: 0;
+}
+
+@keyframes aurora {
+
+    from {
+        transform:
+            translateX(-3%)
+            scale(1);
+    }
+
+    to {
+        transform:
+            translateX(3%)
+            scale(1.08);
+    }
+}
+
+
+/* =========================================================
+   NIEVE
+========================================================= */
+
+#snow {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+.snowflake {
+
+    position: absolute;
+
+    top: -20px;
+
+    color:
+        rgba(255,255,255,.55);
+
+    animation:
+        snowFall linear infinite;
+}
+
+@keyframes snowFall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   PANTALLA INICIAL
+========================================================= */
+
+#opening {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #172944 0%,
+            #091322 60%,
+            #030811 100%
+        );
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+}
+
+#opening.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+.opening-content {
+
+    max-width: 470px;
+
+    animation:
+        openingAppear 1.8s ease;
+}
+
+@keyframes openingAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+}
+
+.opening-penguin {
+
+    font-size: 4.8rem;
+
+    margin-bottom: 20px;
+
+    animation:
+        penguinFloat 4s ease-in-out infinite;
+}
+
+@keyframes penguinFloat {
+
+    0%,100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-10px);
+    }
+}
+
+.opening-small {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    color: #aebdce;
+
+    margin-bottom: 18px;
+}
+
+.opening-title {
+
+    font-size:
+        clamp(
+            2.8rem,
+            11vw,
+            4.5rem
+        );
+
+    line-height: .95;
+
+    font-weight: normal;
+
+    margin-bottom: 22px;
+}
+
+.opening-title span {
+
+    display: block;
+
+    color: #efb8c5;
+
+    font-style: italic;
+}
+
+.opening-subtitle {
+
+    color: #bdc8d4;
+
+    font-size: 1rem;
+
+    line-height: 1.6;
+
+    margin-bottom: 35px;
+}
+
+.open-button {
+
+    border: 1px solid
+        rgba(255,255,255,.25);
+
+    background:
+        rgba(255,255,255,.07);
+
+    color: white;
+
+    border-radius: 50px;
+
+    padding: 14px 30px;
+
+    font-family: Georgia, serif;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition:
+        .4s ease;
+}
+
+.open-button:hover {
+
+    background:
+        rgba(255,185,205,.15);
+
+    transform:
+        scale(1.05);
+}
+
+
+/* =========================================================
+   CONTENIDO
+========================================================= */
+
+#content {
+
+    position: relative;
+
+    z-index: 3;
+
+    opacity: 0;
+
+    transition:
+        opacity 1.8s ease;
+}
+
+#content.show {
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   PORTADA
+========================================================= */
+
+.hero {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 40px 25px;
+
+    position: relative;
+}
+
+.hero-small {
+
+    font-family: Arial, sans-serif;
+
+    font-size: 9px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+    color: #aab9c8;
+
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            3.3rem,
+            14vw,
+            6rem
+        );
+
+    line-height: .88;
+
+    font-weight: normal;
+}
+
+.hero h1 span {
+
+    display: block;
+
+    color: #efb8c4;
+
+    font-style: italic;
+}
+
+.hero-penguin {
+
+    margin-top: 40px;
+
+    font-size: 4.8rem;
+
+    animation:
+        penguinFloat 4s infinite;
+}
+
+.scroll-text {
+
+    position: absolute;
+
+    bottom: 28px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 8px;
+
+    letter-spacing: 4px;
+
+    color: #8596a8;
+
+    opacity: .7;
+}
+
+
+/* =========================================================
+   POEMA
+========================================================= */
+
+.poem {
+
+    width:
+        min(680px, 88%);
+
+    margin: auto;
+
+    padding-bottom: 40px;
+}
+
+
+/* ---------------------------------------------------------
+   CADA ESTROFA
+--------------------------------------------------------- */
+
+.scene {
+
+    min-height: auto;
+
+    padding:
+
+        70px
+
+        0
+
+        70px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.scene.visible {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   TEXTO
+--------------------------------------------------------- */
+
+.scene p {
+
+    font-size:
+        clamp(
+            1.45rem,
+            5.4vw,
+            2.15rem
+        );
+
+    line-height: 1.55;
+
+    color: #f3efeb;
+
+    max-width: 620px;
+}
+
+.scene em {
+
+    color: #efb7c3;
+
+    font-style: italic;
+}
+
+.scene strong {
+
+    color: #ffd1d9;
+
+    font-weight: normal;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,160,180,.18);
+}
+
+
+/* =========================================================
+   PEQUEÑO DIVISOR
+========================================================= */
+
+.scene:not(:first-child)::before {
+
+    content: "✦";
+
+    position: absolute;
+
+    color:
+        rgba(239,183,195,.45);
+
+    font-size: 10px;
+
+    margin-top: -140px;
+}
+
+
+/* =========================================================
+   PIEDRA
+========================================================= */
+
+.stone-scene {
+
+    padding:
+        90px
+        0;
+}
+
+.stone {
+
+    position: relative;
+
+    width: 145px;
+
+    height: 100px;
+
+    border-radius:
+        48% 52%
+        45% 55%;
+
+    background:
+
+        radial-gradient(
+            circle at 30% 25%,
+            #a8a9ae,
+            #666872 48%,
+            #343741 100%
+        );
+
+    box-shadow:
+
+        inset -12px -10px 20px
+        rgba(0,0,0,.3),
+
+        inset 10px 8px 15px
+        rgba(255,255,255,.1),
+
+        0 25px 70px
+        rgba(0,0,0,.5);
+
+    transform:
+        rotate(-7deg);
+
+    animation:
+        stoneFloat 5s ease-in-out infinite;
+}
+
+@keyframes stoneFloat {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            rotate(-7deg);
+    }
+
+    50% {
+
+        transform:
+            translateY(-10px)
+            rotate(-3deg);
+    }
+}
+
+.stone-heart {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    font-size: 2.2rem;
+
+    animation:
+        heartGlow 2s infinite;
+}
+
+@keyframes heartGlow {
+
+    0%,100% {
+
+        filter:
+            drop-shadow(
+                0 0 5px
+                rgba(255,100,140,.3)
+            );
+    }
+
+    50% {
+
+        filter:
+            drop-shadow(
+                0 0 22px
+                rgba(255,100,140,.9)
+            );
+    }
+}
+
+.stone-text {
+
+    max-width: 500px;
+
+    margin-top: 35px;
+
+    font-size: 1.25rem;
+
+    line-height: 1.7;
+
+    color: #c9d2dc;
+
+    font-style: italic;
+}
+
+
+/* =========================================================
+   PINGÜINOS
+========================================================= */
+
+.penguin-scene {
+
+    min-height: 55vh;
+
+    padding:
+        60px
+        0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+}
+
+.penguin {
+
+    font-size: 5.5rem;
+
+    transition:
+        transform 2s ease;
+}
+
+.penguin.left {
+
+    transform:
+        translateX(-35px);
+}
+
+.penguin.right {
+
+    transform:
+        translateX(35px);
+}
+
+.penguin-scene.together
+.penguin.left {
+
+    transform:
+        translateX(22px);
+}
+
+.penguin-scene.together
+.penguin.right {
+
+    transform:
+        translateX(-22px);
+}
+
+.penguin-love {
+
+    position: absolute;
+
+    font-size: 1.9rem;
+
+    opacity: 0;
+
+    transition:
+        opacity 1s ease;
+
+    animation:
+        heartbeat 1.3s infinite;
+}
+
+.penguin-scene.together
+.penguin-love {
+
+    opacity: 1;
+}
+
+@keyframes heartbeat {
+
+    0%,100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.25);
+    }
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+.final {
+
+    min-height: 90vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding:
+        50px 25px;
+}
+
+.final-content {
+
+    max-width: 700px;
+}
+
+.final p {
+
+    font-size:
+        clamp(
+            1.8rem,
+            7vw,
+            3.4rem
+        );
+
+    line-height: 1.3;
+}
+
+.final-highlight {
+
+    margin-top: 30px;
+
+    color: #ffd2da;
+
+    animation:
+        finalGlow 3s infinite;
+}
+
+@keyframes finalGlow {
+
+    0%,100% {
+
+        text-shadow:
+            0 0 5px
+            rgba(255,150,180,.1);
+    }
+
+    50% {
+
+        text-shadow:
+            0 0 20px
+            rgba(255,150,180,.7);
+    }
+}
+
+.signature {
+
+    margin-top: 60px;
+
+    color: #b8c4d0;
+
+    font-style: italic;
+
+    font-size: 1.5rem;
+}
+
+.signature span {
+
+    display: block;
+
+    margin-top: 10px;
+
+    color: #f0b5c1;
+}
+
+
+/* =========================================================
+   CORAZONES
+========================================================= */
+
+.floating-heart {
+
+    position: fixed;
+
+    bottom: -40px;
+
+    pointer-events: none;
+
+    z-index: 50;
+
+    animation:
+        heartFloat 7s linear forwards;
+}
+
+@keyframes heartFloat {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity: 0;
+    }
+
+    15% {
+
+        opacity: .8;
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            scale(1.2)
+            rotate(25deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   MÓVIL
+========================================================= */
+
+@media(max-width:600px) {
+
+    .scene {
+
+        padding:
+            55px
+            0;
+    }
+
+    .scene p {
+
+        font-size:
+            1.58rem;
+
+        line-height:
+            1.52;
+    }
+
+    .scene:not(:first-child)::before {
+
+        margin-top:
+            -110px;
+    }
+
+    .stone {
+
+        width: 125px;
+
+        height: 88px;
+    }
+
+    .penguin {
+
+        font-size: 4.4rem;
+    }
+
+    .penguin.left {
+
+        transform:
+            translateX(-20px);
+    }
+
+    .penguin.right {
+
+        transform:
+            translateX(20px);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     INTRO
+===================================================== -->
+
+<section id="opening">
+
+    <div class="opening-content">
+
+        <div class="opening-penguin">
+            🐧
+        </div>
+
+        <div class="opening-small">
+            Tengo algo para ti
+        </div>
+
+        <div class="opening-title">
+
+            Una pequeña
+
+            <span>
+                historia
+            </span>
+
+        </div>
+
+        <div class="opening-subtitle">
+
+            Hay cosas que no necesitan ser grandes
+            para significar muchísimo.
+
+        </div>
+
+        <button
+            class="open-button"
+            onclick="openLetter()">
+
+            Abrir mi regalo ❤️
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     EFECTOS
+===================================================== -->
+
+<div class="aurora"></div>
+
+<div id="stars"></div>
+
+<div id="snow"></div>
+
+
+<!-- =====================================================
+     CONTENIDO
+===================================================== -->
+
+<div id="content">
+
+
+<!-- =====================================================
+     PORTADA
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-small">
+        Para ti, Fany
+    </div>
+
+    <h1>
+
+        La piedra
+
+        <span>
+            que elegí para ti
+        </span>
+
+    </h1>
+
+    <div class="hero-penguin">
+        🐧
+    </div>
+
+    <div class="scroll-text">
+        DESLIZA
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     POEMA
+===================================================== -->
+
+<main class="poem">
+
+
+<section class="scene">
+
+<p>
+
+Dicen que los pingüinos,
+
+<br>
+
+cuando encuentran a quien quieren
+a su lado,
+
+<br>
+
+buscan entre las piedras
+aquella que consideran especial
+
+<br>
+
+y se la ofrecen como una pequeña promesa:
+
+<br><br>
+
+<em>
+“Diciendo, sin palabras quiero construir algo contigo.”
+</em>
+
+</p>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+Y cuando vi esta piedra,
+
+<br>
+
+pensé en ti.
+
+<br><br>
+
+No porque sea perfecta,
+
+<br>
+
+ni porque sea la más grande,
+
+<br>
+
+sino porque entre tantas otras
+encontré una que tenía algo diferente.
+
+</p>
+
+</section>
+
+
+<section class="stone-scene scene">
+
+<div class="stone">
+
+    <div class="stone-heart">
+        ❤️
+    </div>
+
+</div>
+
+<div class="stone-text">
+
+    Un pequeño corazón
+    que podía guardar
+    una intención enorme.
+
+</div>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+<strong>
+Quiero seguir construyendo contigo.
+</strong>
+
+</p>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+Quiero seguir conociendo
+tus historias,
+
+<br>
+
+descubrir tus sueños,
+
+<br>
+
+compartir tus días buenos
+
+<br>
+
+y acompañarte también
+en los difíciles.
+
+</p>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+Quiero que tengamos
+más caminatas,
+
+<br>
+
+más risas,
+
+<br>
+
+más abrazos que duren
+un poquito de más,
+
+<br>
+
+más momentos que algún día
+podamos recordar con una sonrisa.
+
+</p>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+Y quizá una piedra
+no diga demasiado
+
+<br>
+
+para quien simplemente la mira.
+
+<br><br>
+
+Pero para mí,
+
+<br>
+
+hoy significa mucho.
+
+</p>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+Significa que entre todas
+las personas que pude haber encontrado,
+
+<br><br>
+
+<strong>
+tuve la suerte
+de encontrarte a ti.
+</strong>
+
+</p>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+Así que hoy quiero darte
+mi pequeña piedra.
+
+<br><br>
+
+No como una promesa
+de que todo será perfecto,
+
+<br>
+
+sino como una promesa
+mucho más sencilla:
+
+</p>
+
+</section>
+
+
+<section class="scene">
+
+<p>
+
+<strong>
+quiero seguir eligiéndote,
+</strong>
+
+<br><br>
+
+<strong>
+seguir cuidando lo nuestro
+</strong>
+
+<br><br>
+
+<strong>
+y descubrir contigo
+</strong>
+
+<br><br>
+
+<strong>
+hasta dónde podemos llegar.
+</strong>
+
+</p>
+
+</section>
+
+
+</main>
+
+
+<!-- =====================================================
+     PINGÜINOS
+===================================================== -->
+
+<section
+    class="penguin-scene scene"
+    id="penguins">
+
+    <div class="penguin left">
+        🐧
+    </div>
+
+    <div class="penguin-love">
+        ❤️
+    </div>
+
+    <div class="penguin right">
+        🐧
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FINAL
+===================================================== -->
+
+<section class="final">
+
+<div class="final-content">
+
+<p>
+
+Y si los pingüinos pueden comenzar
+una historia ofreciendo una pequeña piedra...
+
+</p>
+
+<p class="final-highlight">
+
+yo quiero comenzar
+<br>
+la nuestra
+<br>
+de la misma manera.
+
+</p>
+
+<div class="signature">
+
+Para ti, Fany
+
+<span>
+❤️
+</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   ABRIR
+========================================================= */
+
+function openLetter() {
+
+    const opening =
+        document.getElementById("opening");
+
+    const content =
+        document.getElementById("content");
+
+    opening.classList.add("hide");
+
+    setTimeout(() => {
+
+        content.classList.add("show");
+
+        window.scrollTo({
+            top: 0
+        });
+
+    }, 400);
+}
+
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+const stars =
+    document.getElementById("stars");
+
+for(let i = 0; i < 90; i++) {
+
+    const star =
+        document.createElement("div");
+
+    star.className = "star";
+
+    star.style.left =
+        Math.random() * 100 + "%";
+
+    star.style.top =
+        Math.random() * 100 + "%";
+
+    const size =
+        Math.random() * 2.5 + 1;
+
+    star.style.width =
+        size + "px";
+
+    star.style.height =
+        size + "px";
+
+    star.style.animationDelay =
+        Math.random() * 4 + "s";
+
+    stars.appendChild(star);
+}
+
+
+/* =========================================================
+   NIEVE
+========================================================= */
+
+const snow =
+    document.getElementById("snow");
+
+for(let i = 0; i < 35; i++) {
+
+    const flake =
+        document.createElement("div");
+
+    flake.className =
+        "snowflake";
+
+    flake.innerHTML = "•";
+
+    flake.style.left =
+        Math.random() * 100 + "%";
+
+    flake.style.fontSize =
+        (Math.random() * 7 + 4) + "px";
+
+    flake.style.animationDuration =
+        (Math.random() * 8 + 8) + "s";
+
+    flake.style.animationDelay =
+        Math.random() * 10 + "s";
+
+    snow.appendChild(flake);
+}
+
+
+/* =========================================================
+   REVELAR TEXTO
+========================================================= */
+
+const scenes =
+    document.querySelectorAll(".scene");
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting) {
+
+                    entry.target
+                        .classList
+                        .add("visible");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: .15
+        }
+
+    );
+
+
+scenes.forEach(scene => {
+
+    observer.observe(scene);
+
+});
+
+
+/* =========================================================
+   PINGÜINOS
+========================================================= */
+
+const penguins =
+    document.getElementById("penguins");
+
+const penguinObserver =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting) {
+
+                    penguins
+                        .classList
+                        .add("together");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: .45
+        }
+
+    );
+
+penguinObserver.observe(penguins);
+
+
+/* =========================================================
+   CORAZONES
+========================================================= */
+
+function createHeart() {
+
+    const heart =
+        document.createElement("div");
+
+    heart.className =
+        "floating-heart";
+
+    heart.innerHTML =
+        Math.random() > .3
+        ? "❤️"
+        : "♡";
+
+    heart.style.left =
+        Math.random() * 100 + "%";
+
+    heart.style.fontSize =
+        (Math.random() * 14 + 14) + "px";
+
+    heart.style.animationDuration =
+        (Math.random() * 4 + 6) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(
+        () => heart.remove(),
+        10000
+    );
+}
+
+setInterval(
+    createHeart,
+    2400
+);
+
+
+/* =========================================================
+   CORAZÓN AL TOCAR
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+        if(
+            event.target.tagName ===
+            "BUTTON"
+        ) return;
+
+        const heart =
+            document.createElement("div");
+
+        heart.innerHTML = "❤️";
+
+        heart.style.position =
+            "fixed";
+
+        heart.style.left =
+            event.clientX + "px";
+
+        heart.style.top =
+            event.clientY + "px";
+
+        heart.style.fontSize =
+            "18px";
+
+        heart.style.zIndex =
+            "100";
+
+        heart.style.pointerEvents =
+            "none";
+
+        document.body.appendChild(heart);
+
+        heart.animate(
+
+            [
+                {
+                    transform:
+                        "translate(-50%,-50%) scale(.5)",
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        "translate(-50%,-130px) scale(1.4)",
+                    opacity: 0
+                }
+
+            ],
+
+            {
+                duration: 1200,
+                easing: "ease-out"
+            }
+
+        );
+
+        setTimeout(
+            () => heart.remove(),
+            1200
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
