@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>La estrella que elegí ✨</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(
+          circle at 50% 45%,
+          rgba(77, 53, 110, 0.30) 0%,
+          rgba(20, 16, 43, 0.75) 30%,
+          #05050d 75%
+        );
+      color: white;
+    }
+
+    /* =========================================================
+       UNIVERSO
+    ========================================================= */
+
+    .universe {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      isolation: isolate;
+    }
+
+    /* =========================================================
+       NEBULOSAS
+    ========================================================= */
+
+    .nebula {
+      position: absolute;
+      inset: -30%;
+      z-index: -6;
+      pointer-events: none;
+      filter: blur(55px);
+      opacity: 0.55;
+    }
+
+    .nebula::before,
+    .nebula::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .nebula::before {
+      width: 55vw;
+      height: 55vw;
+      left: 5%;
+      top: 20%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(111, 74, 160, 0.25),
+          transparent 70%
+        );
+
+      animation: nebulaMove 18s ease-in-out infinite alternate;
+    }
+
+    .nebula::after {
+      width: 45vw;
+      height: 45vw;
+      right: 5%;
+      bottom: 5%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(61, 96, 165, 0.20),
+          transparent 70%
+        );
+
+      animation: nebulaMove2 22s ease-in-out infinite alternate;
+    }
+
+    @keyframes nebulaMove {
+      from {
+        transform: translate(-4%, -2%) scale(1);
+      }
+
+      to {
+        transform: translate(8%, 5%) scale(1.15);
+      }
+    }
+
+    @keyframes nebulaMove2 {
+      from {
+        transform: translate(5%, 3%) scale(1);
+      }
+
+      to {
+        transform: translate(-7%, -5%) scale(1.18);
+      }
+    }
+
+    /* =========================================================
+       ESTRELLAS DE FONDO
+    ========================================================= */
+
+    .stars {
+      position: absolute;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+
+      width: 2px;
+      height: 2px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      box-shadow:
+        0 0 5px rgba(255, 255, 255, 0.8);
+
+      opacity: 0.65;
+
+      animation:
+        twinkle var(--duration) ease-in-out infinite;
+
+      animation-delay: var(--delay);
+    }
+
+    .star.large {
+      width: 3px;
+      height: 3px;
+    }
+
+    @keyframes twinkle {
+
+      0%,
+      100% {
+        opacity: 0.20;
+        transform: scale(0.65);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    /* =========================================================
+       CONSTELACIONES
+    ========================================================= */
+
+    .constellations {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      overflow: hidden;
+
+      pointer-events: none;
+    }
+
+    .constellation {
+      position: absolute;
+
+      width: 300px;
+      height: 230px;
+
+      opacity: 0.55;
+
+      will-change:
+        transform,
+        opacity;
+
+      filter:
+        drop-shadow(
+          0 0 8px rgba(190, 170, 255, 0.45)
+        );
+    }
+
+    .constellation svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* Líneas */
+
+    .constellation line {
+      stroke: rgba(194, 178, 255, 0.50);
+
+      stroke-width: 1.15;
+
+      stroke-linecap: round;
+
+      stroke-dasharray: 5 7;
+
+      transition:
+        opacity 0.2s linear,
+        stroke-width 0.2s linear;
+    }
+
+    /* Estrellas de constelación */
+
+    .constellation circle {
+      fill: white;
+
+      filter:
+        drop-shadow(
+          0 0 5px rgba(220, 210, 255, 0.95)
+        );
+
+      transform-box: fill-box;
+      transform-origin: center;
+
+      will-change:
+        transform,
+        opacity;
+    }
+
+    /* =========================================================
+       POSICIONES INICIALES
+    ========================================================= */
+
+    .constellation.one {
+      top: 7%;
+      left: 4%;
+    }
+
+    .constellation.two {
+      right: 3%;
+      top: 13%;
+    }
+
+    .constellation.three {
+      left: 5%;
+      bottom: 4%;
+    }
+
+    .constellation.four {
+      right: 7%;
+      bottom: 2%;
+      opacity: 0.35;
+    }
+
+    /* =========================================================
+       COMETAS
+    ========================================================= */
+
+    .comets {
+      position: absolute;
+      inset: 0;
+
+      z-index: -1;
+
+      pointer-events: none;
+
+      overflow: hidden;
+    }
+
+    .comet {
+      position: absolute;
+
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      box-shadow:
+        0 0 8px 2px white,
+        0 0 20px 5px rgba(177, 161, 255, 0.8);
+
+      opacity: 0;
+    }
+
+    .comet::after {
+      content: "";
+
+      position: absolute;
+
+      right: 2px;
+      top: 50%;
+
+      width: 150px;
+      height: 2px;
+
+      transform:
+        translateY(-50%);
+
+      transform-origin: right center;
+
+      background:
+        linear-gradient(
+          to left,
+          rgba(255,255,255,0.85),
+          rgba(180,164,255,0.35),
+          transparent
+        );
+
+      filter: blur(1px);
+    }
+
+    .comet.one {
+      top: 17%;
+      left: -15%;
+
+      animation:
+        cometOne 10s linear infinite;
+    }
+
+    .comet.two {
+      top: 62%;
+      left: -20%;
+
+      transform: scale(0.7);
+
+      animation:
+        cometTwo 14s linear infinite;
+
+      animation-delay: 4s;
+    }
+
+    .comet.three {
+      top: 38%;
+      left: -20%;
+
+      transform: scale(0.55);
+
+      animation:
+        cometThree 18s linear infinite;
+
+      animation-delay: 8s;
+    }
+
+    @keyframes cometOne {
+
+      0% {
+        left: -15%;
+        top: 12%;
+        opacity: 0;
+        transform: rotate(-18deg);
+      }
+
+      8% {
+        opacity: 1;
+      }
+
+      40% {
+        opacity: 1;
+      }
+
+      55% {
+        left: 110%;
+        top: 48%;
+        opacity: 0;
+        transform: rotate(-18deg);
+      }
+
+      100% {
+        left: 110%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes cometTwo {
+
+      0% {
+        left: -20%;
+        top: 68%;
+        opacity: 0;
+        transform: rotate(-12deg) scale(0.7);
+      }
+
+      10% {
+        opacity: 0.9;
+      }
+
+      45% {
+        opacity: 1;
+      }
+
+      62% {
+        left: 115%;
+        top: 32%;
+        opacity: 0;
+        transform: rotate(-12deg) scale(0.7);
+      }
+
+      100% {
+        left: 115%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes cometThree {
+
+      0% {
+        left: -20%;
+        top: 30%;
+        opacity: 0;
+        transform: rotate(-24deg) scale(0.55);
+      }
+
+      7% {
+        opacity: 0.8;
+      }
+
+      45% {
+        opacity: 0.9;
+      }
+
+      60% {
+        left: 115%;
+        top: 5%;
+        opacity: 0;
+        transform: rotate(-24deg) scale(0.55);
+      }
+
+      100% {
+        left: 115%;
+        opacity: 0;
+      }
+    }
+
+    /* =========================================================
+       CONTENIDO
+    ========================================================= */
+
+    .content {
+      position: relative;
+
+      z-index: 10;
+
+      width: min(900px, 90%);
+
+      padding: 60px 30px;
+
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-family:
+        "Segoe UI",
+        sans-serif;
+
+      text-transform: uppercase;
+
+      letter-spacing: 5px;
+
+      font-size: 0.72rem;
+
+      color:
+        rgba(220, 209, 255, 0.68);
+
+      margin-bottom: 22px;
+
+      animation:
+        appear 2s ease forwards;
+    }
+
+    h1 {
+      font-size:
+        clamp(2.5rem, 7vw, 5.5rem);
+
+      font-weight: normal;
+
+      line-height: 1;
+
+      margin-bottom: 38px;
+
+      background:
+        linear-gradient(
+          120deg,
+          #fff,
+          #e8ddff,
+          #fff,
+          #cdbaff
+        );
+
+      background-size: 250% auto;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      animation:
+        titleAppear 2.2s ease forwards,
+        titleGlow 7s ease-in-out infinite 2s;
+    }
+
+    /* =========================================================
+       POEMA
+    ========================================================= */
+
+    .poem {
+      position: relative;
+
+      max-width: 690px;
+
+      margin: 0 auto;
+
+      padding:
+        35px 35px 30px;
+
+      border:
+        1px solid rgba(205,190,255,0.16);
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.045),
+          rgba(255,255,255,0.015)
+        );
+
+      backdrop-filter:
+        blur(9px);
+
+      -webkit-backdrop-filter:
+        blur(9px);
+
+      box-shadow:
+        0 20px 70px rgba(0,0,0,0.45),
+        inset 0 0 50px rgba(160,130,255,0.035);
+
+      animation:
+        poemAppear 2.5s ease forwards;
+    }
+
+    .poem::before {
+      content: "✦";
+
+      position: absolute;
+
+      top: -15px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      width: 30px;
+      height: 30px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      color: white;
+
+      background: #0b0916;
+
+      font-size: 0.9rem;
+
+      box-shadow:
+        0 0 18px rgba(205,190,255,0.5);
+    }
+
+    .poem p {
+      font-size:
+        clamp(1.05rem, 2.4vw, 1.32rem);
+
+      line-height: 2;
+
+      color:
+        rgba(255,255,255,0.88);
+
+      font-weight: 300;
+    }
+
+    .poem p + p {
+      margin-top: 20px;
+    }
+
+    .poem .final {
+      margin-top: 28px;
+
+      color: white;
+
+      font-size:
+        clamp(1.15rem, 2.7vw, 1.45rem);
+
+      text-shadow:
+        0 0 20px rgba(210,190,255,0.45);
+    }
+
+    .signature {
+      margin-top: 35px;
+
+      font-size: 1rem;
+
+      font-style: italic;
+
+      color:
+        rgba(220,209,255,0.8);
+
+      letter-spacing: 1px;
+    }
+
+    .heart {
+      display: inline-block;
+
+      margin-left: 5px;
+
+      color: white;
+
+      animation:
+        heartBeat 2.4s ease-in-out infinite;
+    }
+
+    /* =========================================================
+       ANIMACIONES
+    ========================================================= */
+
+    @keyframes appear {
+
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes titleAppear {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(25px)
+          scale(0.97);
+
+        filter: blur(8px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+
+        filter: blur(0);
+      }
+    }
+
+    @keyframes titleGlow {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+
+        filter:
+          drop-shadow(
+            0 0 0 rgba(210,190,255,0)
+          );
+      }
+
+      50% {
+        background-position: 100% 50%;
+
+        filter:
+          drop-shadow(
+            0 0 18px rgba(210,190,255,0.22)
+          );
+      }
+    }
+
+    @keyframes poemAppear {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(35px);
+
+        filter: blur(5px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+
+        filter: blur(0);
+      }
+    }
+
+    @keyframes heartBeat {
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      15% {
+        transform: scale(1.18);
+      }
+
+      30% {
+        transform: scale(1);
+      }
+
+      45% {
+        transform: scale(1.12);
+      }
+    }
+
+    /* =========================================================
+       ESTRELLA CENTRAL
+    ========================================================= */
+
+    .central-star {
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+
+      width: 4px;
+      height: 4px;
+
+      border-radius: 50%;
+
+      background: white;
+
+      box-shadow:
+        0 0 8px white,
+        0 0 20px rgba(220,205,255,0.9),
+        0 0 50px rgba(150,120,255,0.5);
+
+      opacity: 0.8;
+
+      animation:
+        centralStar 4s ease-in-out infinite;
+    }
+
+    @keyframes centralStar {
+
+      0%,
+      100% {
+        transform:
+          translate(-50%, -50%)
+          scale(1);
+
+        opacity: 0.55;
+      }
+
+      50% {
+        transform:
+          translate(-50%, -50%)
+          scale(2.2);
+
+        opacity: 1;
+      }
+    }
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media (max-width: 700px) {
+
+      .content {
+        width: 94%;
+        padding: 45px 10px;
+      }
+
+      .eyebrow {
+        font-size: 0.6rem;
+        letter-spacing: 3px;
+      }
+
+      h1 {
+        margin-bottom: 28px;
+      }
+
+      .poem {
+        padding:
+          30px 22px 25px;
+
+        border-radius: 22px;
+      }
+
+      .poem p {
+        line-height: 1.85;
+      }
+
+      .constellation {
+        width: 190px;
+        height: 145px;
+      }
+
+      .constellation.one {
+        left: -35px;
+        top: 5%;
+      }
+
+      .constellation.two {
+        right: -45px;
+        top: 12%;
+      }
+
+      .constellation.three {
+        left: -45px;
+        bottom: 5%;
+      }
+
+      .constellation.four {
+        right: -35px;
+        bottom: 2%;
+      }
+
+      .comet::after {
+        width: 100px;
+      }
+    }
+
+    @media (max-height: 700px) {
+
+      .content {
+        padding-top: 35px;
+        padding-bottom: 35px;
+      }
+
+      h1 {
+        margin-bottom: 22px;
+      }
+
+      .poem {
+        padding-top: 25px;
+        padding-bottom: 22px;
+      }
+
+      .poem p {
+        line-height: 1.65;
+      }
+
+      .signature {
+        margin-top: 22px;
+      }
+    }
+
+    /* =========================================================
+       ACCESIBILIDAD
+    ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <main class="universe">
+
+    <div class="nebula"></div>
+
+    <!-- =====================================================
+         ESTRELLAS DEL FONDO
+    ====================================================== -->
+
+    <div
+      class="stars"
+      id="stars">
+    </div>
+
+
+    <!-- =====================================================
+         CONSTELACIONES
+    ====================================================== -->
+
+    <div class="constellations">
+
+      <!-- CONSTELACIÓN 1 -->
+
+      <div
+        class="constellation one"
+        data-speed="0.000055"
+        data-angle="0.000035"
+      >
+
+        <svg viewBox="0 0 300 230">
+
+          <line x1="40" y1="60" x2="105" y2="30"/>
+          <line x1="105" y1="30" x2="160" y2="75"/>
+          <line x1="160" y1="75" x2="225" y2="45"/>
+          <line x1="225" y1="45" x2="270" y2="120"/>
+          <line x1="270" y1="120" x2="190" y2="155"/>
+          <line x1="190" y1="155" x2="120" y2="130"/>
+          <line x1="120" y1="130" x2="40" y2="60"/>
+
+          <circle cx="40" cy="60" r="2.5"/>
+          <circle cx="105" cy="30" r="3"/>
+          <circle cx="160" cy="75" r="2.5"/>
+          <circle cx="225" cy="45" r="3"/>
+          <circle cx="270" cy="120" r="2.5"/>
+          <circle cx="190" cy="155" r="3"/>
+          <circle cx="120" cy="130" r="2.5"/>
+
+        </svg>
+
+      </div>
+
+
+      <!-- CONSTELACIÓN 2 -->
+
+      <div
+        class="constellation two"
+        data-speed="0.000045"
+        data-angle="-0.00003"
+      >
+
+        <svg viewBox="0 0 300 230">
+
+          <line x1="35" y1="180" x2="85" y2="120"/>
+          <line x1="85" y1="120" x2="140" y2="145"/>
+          <line x1="140" y1="145" x2="180" y2="80"/>
+          <line x1="180" y1="80" x2="240" y2="105"/>
+          <line x1="240" y1="105" x2="275" y2="50"/>
+
+          <circle cx="35" cy="180" r="2.5"/>
+          <circle cx="85" cy="120" r="3"/>
+          <circle cx="140" cy="145" r="2.5"/>
+          <circle cx="180" cy="80" r="3"/>
+          <circle cx="240" cy="105" r="2.5"/>
+          <circle cx="275" cy="50" r="3"/>
+
+        </svg>
+
+      </div>
+
+
+      <!-- CONSTELACIÓN 3 -->
+
+      <div
+        class="constellation three"
+        data-speed="0.000065"
+        data-angle="0.000025"
+      >
+
+        <svg viewBox="0 0 300 230">
+
+          <line x1="50" y1="170" x2="100" y2="90"/>
+          <line x1="100" y1="90" x2="155" y2="125"/>
+          <line x1="155" y1="125" x2="205" y2="55"/>
+          <line x1="205" y1="55" x2="255" y2="95"/>
+          <line x1="255" y1="95" x2="280" y2="165"/>
+
+          <circle cx="50" cy="170" r="2.5"/>
+          <circle cx="100" cy="90" r="3"/>
+          <circle cx="155" cy="125" r="2.5"/>
+          <circle cx="205" cy="55" r="3"/>
+          <circle cx="255" cy="95" r="2.5"/>
+          <circle cx="280" cy="165" r="3"/>
+
+        </svg>
+
+      </div>
+
+
+      <!-- CONSTELACIÓN 4 -->
+
+      <div
+        class="constellation four"
+        data-speed="0.00004"
+        data-angle="-0.00002"
+      >
+
+        <svg viewBox="0 0 300 230">
+
+          <line x1="40" y1="100" x2="90" y2="45"/>
+          <line x1="90" y1="45" x2="145" y2="85"/>
+          <line x1="145" y1="85" x2="200" y2="40"/>
+          <line x1="200" y1="40" x2="260" y2="110"/>
+          <line x1="260" y1="110" x2="210" y2="175"/>
+
+          <circle cx="40" cy="100" r="2"/>
+          <circle cx="90" cy="45" r="2.5"/>
+          <circle cx="145" cy="85" r="2"/>
+          <circle cx="200" cy="40" r="2.5"/>
+          <circle cx="260" cy="110" r="2"/>
+          <circle cx="210" cy="175" r="2.5"/>
+
+        </svg>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         COMETAS
+    ====================================================== -->
+
+    <div class="comets">
+
+      <span class="comet one"></span>
+
+      <span class="comet two"></span>
+
+      <span class="comet three"></span>
+
+    </div>
+
+
+    <!-- =====================================================
+         ESTRELLA CENTRAL
+    ====================================================== -->
+
+    <div class="central-star"></div>
+
+
+    <!-- =====================================================
+         CONTENIDO
+    ====================================================== -->
+
+    <section class="content">
+
+      <div class="eyebrow">
+        Para la estrella que elegí
+      </div>
+
+      <h1>
+        La estrella que elegí
+      </h1>
+
+
+      <article class="poem">
+
+        <p>
+          De todas las estrellas que habitan el cielo,
+          hay una que prefiero mirar de cerca;
+          no vive allá arriba,
+          ni se pierde entre constelaciones:
+          vive en la Tierra.
+        </p>
+
+        <p>
+          Tiene dos ojos
+          que me dejan sin palabras,
+          dos pequeños universos
+          donde puedo mirar su alma
+          y descubrir, poco a poco,
+          la inmensidad de su amor.
+        </p>
+
+        <p>
+          Y quizá nadie más lo entienda,
+          pero para mí es sencillo:
+          la estrella que más me gusta
+          no está en el cielo…
+          está frente a mí,
+        </p>
+
+        <p class="final">
+          y tiene tus ojos. ❤️
+        </p>
+
+
+        <div class="signature">
+
+          ❤️ Para ti, amor mio <span class="heart"> ♡ </span>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* =========================================================
+       ESTRELLAS DEL FONDO
+    ========================================================= */
+
+    const starsContainer =
+      document.getElementById("stars");
+
+
+    function createStars() {
+
+      starsContainer.innerHTML = "";
+
+      const width =
+        window.innerWidth;
+
+      const height =
+        window.innerHeight;
+
+      const amount =
+        Math.min(
+          260,
+          Math.floor(
+            (width * height) / 6000
+          )
+        );
+
+
+      for (
+        let i = 0;
+        i < amount;
+        i++
+      ) {
+
+        const star =
+          document.createElement("span");
+
+
+        star.className = "star";
+
+
+        if (
+          Math.random() > 0.88
+        ) {
+
+          star.classList.add("large");
+
+        }
+
+
+        star.style.left =
+          `${Math.random() * 100}%`;
+
+        star.style.top =
+          `${Math.random() * 100}%`;
+
+
+        star.style.setProperty(
+          "--duration",
+          `${2 + Math.random() * 5}s`
+        );
+
+
+        star.style.setProperty(
+          "--delay",
+          `${Math.random() * -6}s`
+        );
+
+
+        starsContainer.appendChild(
+          star
+        );
+
+      }
+
+    }
+
+
+    createStars();
+
+
+    let resizeTimer;
+
+
+    window.addEventListener(
+      "resize",
+      () => {
+
+        clearTimeout(
+          resizeTimer
+        );
+
+        resizeTimer =
+          setTimeout(
+            createStars,
+            250
+          );
+
+      }
+    );
+
+
+    /* =========================================================
+       CONSTELACIONES DINÁMICAS
+       
+       AQUÍ ESTÁ LA PARTE IMPORTANTE:
+       JavaScript mueve físicamente cada constelación.
+    ========================================================= */
+
+    const constellationElements =
+      document.querySelectorAll(
+        ".constellation"
+      );
+
+
+    const constellationData =
+      [];
+
+
+    constellationElements.forEach(
+      (element, index) => {
+
+        constellationData.push({
+
+          element,
+
+          x: Math.random() * 100,
+
+          y: Math.random() * 100,
+
+          phase:
+            Math.random() *
+            Math.PI *
+            2,
+
+          phase2:
+            Math.random() *
+            Math.PI *
+            2,
+
+          speed:
+            parseFloat(
+              element.dataset.speed
+            ) || 0.00005,
+
+          angle:
+            parseFloat(
+              element.dataset.angle
+            ) || 0.00003,
+
+          amplitudeX:
+            25 + Math.random() * 45,
+
+          amplitudeY:
+            18 + Math.random() * 35,
+
+          rotation:
+            Math.random() * 2 - 1
+
+        });
+
+      }
+    );
+
+
+    /* =========================================================
+       PARPADEO INDIVIDUAL DE CADA ESTRELLA
+    ========================================================= */
+
+    const constellationStars =
+      document.querySelectorAll(
+        ".constellation circle"
+      );
+
+
+    const starData =
+      [];
+
+
+    constellationStars.forEach(
+      (star, index) => {
+
+        starData.push({
+
+          element: star,
+
+          phase:
+            Math.random() *
+            Math.PI *
+            2,
+
+          speed:
+            0.0008 +
+            Math.random() *
+            0.002,
+
+          min:
+            0.35 +
+            Math.random() * 0.2,
+
+          max:
+            0.75 +
+            Math.random() * 0.25,
+
+          scale:
+            0.75 +
+            Math.random() * 0.7
+
+        });
+
+      }
+    );
+
+
+    /* =========================================================
+       ANIMACIÓN PRINCIPAL
+    ========================================================= */
+
+    let lastTime = 0;
+
+
+    function animateConstellations(
+      timestamp
+    ) {
+
+      const delta =
+        timestamp - lastTime;
+
+      lastTime =
+        timestamp;
+
+
+      /* -------------------------------------------------------
+         MOVIMIENTO DE CONSTELACIONES
+      -------------------------------------------------------- */
+
+      constellationData.forEach(
+        (data, index) => {
+
+          const t =
+            timestamp *
+            data.speed;
+
+          const x =
+            Math.sin(
+              t +
+              data.phase
+            ) *
+            data.amplitudeX;
+
+          const y =
+            Math.cos(
+              t * 0.83 +
+              data.phase2
+            ) *
+            data.amplitudeY;
+
+          const rotation =
+            Math.sin(
+              t * 0.7 +
+              data.phase
+            ) *
+            2.2;
+
+
+          /*
+           * El translate mantiene la posición
+           * original de CSS y agrega movimiento.
+           */
+
+          data.element.style.transform =
+            `
+              translate(
+                ${x}px,
+                ${y}px
+              )
+              rotate(${rotation}deg)
+            `;
+
+
+          /*
+           * También hacemos que la constelación
+           * respire ligeramente en luminosidad.
+           */
+
+          const opacity =
+            0.42 +
+            (
+              (
+                Math.sin(
+                  t * 1.35 +
+                  data.phase
+                ) + 1
+              ) / 2
+            ) * 0.28;
+
+
+          data.element.style.opacity =
+            opacity;
+
+        }
+      );
+
+
+      /* -------------------------------------------------------
+         PARPADEO DE ESTRELLAS
+      -------------------------------------------------------- */
+
+      starData.forEach(
+        (data) => {
+
+          const wave =
+            (
+              Math.sin(
+                timestamp *
+                data.speed +
+                data.phase
+              ) + 1
+            ) / 2;
+
+
+          const opacity =
+            data.min +
+            (
+              data.max -
+              data.min
+            ) *
+            wave;
+
+
+          const scale =
+            data.scale +
+            wave * 0.45;
+
+
+          data.element.style.opacity =
+            opacity;
+
+
+          data.element.style.transform =
+            `
+              scale(${scale})
+            `;
+
+        }
+      );
+
+
+      /* -------------------------------------------------------
+         LÍNEAS DE CONSTELACIÓN
+      -------------------------------------------------------- */
+
+      document
+        .querySelectorAll(
+          ".constellation line"
+        )
+        .forEach(
+          (line, index) => {
+
+            const pulse =
+              (
+                Math.sin(
+                  timestamp *
+                  0.0008 +
+                  index
+                ) + 1
+              ) / 2;
+
+
+            line.style.opacity =
+              0.25 +
+              pulse * 0.65;
+
+
+            line.style.strokeWidth =
+              0.8 +
+              pulse * 0.7;
+
+          }
+        );
+
+
+      requestAnimationFrame(
+        animateConstellations
+      );
+
+    }
+
+
+    requestAnimationFrame(
+      animateConstellations
+    );
+
+
+    /* =========================================================
+       EFECTO EXTRA:
+       AL PASAR EL MOUSE POR EL CIELO,
+       LAS CONSTELACIONES RESPONDEN MUY SUTILMENTE.
+    ========================================================= */
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+
+    window.addEventListener(
+      "mousemove",
+      (event) => {
+
+        mouseX =
+          (
+            event.clientX /
+            window.innerWidth -
+            0.5
+          );
+
+        mouseY =
+          (
+            event.clientY /
+            window.innerHeight -
+            0.5
+          );
+
+        constellationElements
+          .forEach(
+            (element, index) => {
+
+              const strength =
+                8 + index * 2;
+
+              element.style.marginLeft =
+                `${mouseX * strength}px`;
+
+              element.style.marginTop =
+                `${mouseY * strength}px`;
+
+            }
+          );
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
