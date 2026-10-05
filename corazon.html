@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Todo esto es lo que siento por ti, corazón ❤</title>
+
+<style>
+
+/* =========================================================
+   CONFIGURACIÓN GENERAL
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #35105a 0%,
+            #19082e 42%,
+            #08020f 100%
+        );
+
+    color: white;
+
+    font-family:
+        'Segoe UI',
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
+}
+
+
+/* =========================================================
+   ESCENA
+========================================================= */
+
+.scene {
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    padding-bottom: 60px;
+}
+
+
+/* =========================================================
+   ESTRELLAS
+========================================================= */
+
+.stars {
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.star {
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    animation:
+        twinkle
+        var(--duration)
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes twinkle {
+
+    0% {
+        opacity: 0.2;
+        transform: scale(0.7);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+
+/* =========================================================
+   LUNA
+========================================================= */
+
+.moon {
+    position: fixed;
+
+    top: 4%;
+    right: 6%;
+
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    background: #fff6d6;
+
+    box-shadow:
+        0 0 25px rgba(255,246,214,.8),
+        0 0 70px rgba(255,200,220,.35);
+
+    z-index: 1;
+}
+
+.moon::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: -5px;
+    left: 15px;
+
+    width: 70px;
+    height: 70px;
+
+    border-radius: 50%;
+
+    background: #210a38;
+}
+
+
+/* =========================================================
+   ENCABEZADO
+========================================================= */
+
+.header {
+
+    position: relative;
+
+    z-index: 20;
+
+    width: min(850px, 92vw);
+
+    text-align: center;
+
+    padding-top: 40px;
+}
+
+.header h1 {
+
+    font-family: Georgia, serif;
+
+    font-size:
+        clamp(
+            1.8rem,
+            4vw,
+            2.9rem
+        );
+
+    text-shadow:
+        0 0 12px #ff69b4,
+        0 0 35px rgba(255,105,180,.6);
+
+    line-height: 1.2;
+}
+
+.header h1 span {
+
+    display: block;
+
+    color: #ff94c9;
+
+    font-style: italic;
+
+    margin-top: 4px;
+}
+
+.subtitle {
+
+    margin-top: 14px;
+
+    color: #f3c2e1;
+
+    font-size:
+        clamp(
+            .9rem,
+            1.8vw,
+            1.05rem
+        );
+
+    line-height: 1.4;
+}
+
+.instruction {
+
+    margin-top: 10px;
+
+    color: #ffb7dd;
+
+    font-size: .9rem;
+}
+
+
+/* =========================================================
+   CONTENEDOR DEL CORAZÓN (MÁS GRANDE)
+========================================================= */
+
+.heart-stage {
+
+    position: relative;
+
+    width: min(780px, 92vw);
+
+    margin-top: 30px;
+
+    z-index: 5;
+}
+
+.heart-field {
+
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+}
+
+
+/* =========================================================
+   CORAZONCITOS
+========================================================= */
+
+.mini-heart {
+
+    position: absolute;
+
+    width: var(--size);
+    height: var(--size);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-45deg);
+
+    border-radius: 2px;
+
+    cursor: pointer;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--light),
+            var(--dark)
+        );
+
+    box-shadow:
+        0 0 8px var(--glow);
+
+    transition:
+        transform .25s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        ),
+        filter .25s;
+
+    animation:
+        heartFloat
+        var(--duration)
+        ease-in-out
+        infinite
+        alternate;
+
+    animation-delay:
+        var(--delay);
+
+    pointer-events: auto;
+}
+
+.mini-heart::before,
+.mini-heart::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+
+    border-radius: 50%;
+
+    background: inherit;
+}
+
+.mini-heart::before {
+
+    top: -50%;
+    left: 0;
+}
+
+.mini-heart::after {
+
+    top: 0;
+    left: 50%;
+}
+
+
+.mini-heart:hover {
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-45deg)
+        scale(2.2);
+
+    filter:
+        brightness(1.4)
+        drop-shadow(
+            0 0 8px #ff9aca
+        )
+        drop-shadow(
+            0 0 22px #ff2170
+        );
+
+    z-index: 100;
+}
+
+
+@keyframes heartFloat {
+
+    0% {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            translateY(0);
+    }
+
+    100% {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-41deg)
+            translateY(-2px);
+    }
+}
+
+
+/* =========================================================
+   PARTÍCULAS
+========================================================= */
+
+.spark {
+
+    position: absolute;
+
+    width: 3px;
+    height: 3px;
+
+    border-radius: 50%;
+
+    background: #ffe36e;
+
+    box-shadow:
+        0 0 6px #ffe36e,
+        0 0 14px #ffb700;
+
+    pointer-events: none;
+
+    animation:
+        sparkFloat
+        var(--duration)
+        ease-in-out
+        infinite
+        alternate;
+}
+
+@keyframes sparkFloat {
+
+    0% {
+
+        opacity: .15;
+
+        transform:
+            translate(0, 0)
+            scale(.7);
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translate(
+                var(--x),
+                var(--y)
+            )
+            scale(1.4);
+    }
+}
+
+
+/* =========================================================
+   TEXTO INFERIOR
+========================================================= */
+
+.bottom-text {
+
+    position: relative;
+
+    z-index: 20;
+
+    text-align: center;
+
+    color: #dca5ca;
+
+    font-size: .95rem;
+
+    margin-top: 50px;
+
+    padding: 0 20px;
+}
+
+.bottom-text span {
+
+    color: #ff529a;
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.message-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 500;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background:
+        rgba(
+            8,
+            2,
+            18,
+            .84
+        );
+
+    backdrop-filter:
+        blur(9px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+}
+
+.message-overlay.active {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+.message-card {
+
+    position: relative;
+
+    width:
+        min(
+            540px,
+            92vw
+        );
+
+    max-height: 80vh;
+
+    overflow-y: auto;
+
+    padding:
+        40px
+        30px
+        30px;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #ffe2f0
+        );
+
+    color: #4a1535;
+
+    box-shadow:
+        0 0 40px
+        rgba(
+            255,
+            105,
+            180,
+            .55
+        ),
+        0 20px 60px
+        rgba(
+            0,
+            0,
+            0,
+            .6
+        );
+
+    transform:
+        scale(.75)
+        translateY(30px);
+
+    transition:
+        transform .4s
+        cubic-bezier(
+            .175,
+            .885,
+            .32,
+            1.275
+        );
+}
+
+.message-overlay.active
+.message-card {
+
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+
+.close-btn {
+
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    width: 36px;
+    height: 36px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #ff4b8b;
+
+    color: white;
+
+    font-size: 20px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 4px 12px
+        rgba(
+            255,
+            75,
+            139,
+            .4
+        );
+
+    transition:
+        transform .2s,
+        background .2s;
+}
+
+.close-btn:hover {
+
+    transform: scale(1.1);
+
+    background: #ff236e;
+}
+
+
+.message-heart {
+
+    text-align: center;
+
+    font-size: 48px;
+
+    margin-bottom: 8px;
+
+    animation:
+        pulse
+        1.2s
+        infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+.message-card h2 {
+
+    text-align: center;
+
+    font-family: Georgia, serif;
+
+    color: #d81b60;
+
+    font-size: 1.6rem;
+
+    margin-bottom: 15px;
+}
+
+.message-card p {
+
+    font-size: 1.05rem;
+
+    line-height: 1.7;
+
+    text-align: center;
+}
+
+.signature {
+
+    margin-top: 22px;
+
+    text-align: right;
+
+    font-family: Georgia, serif;
+
+    font-style: italic;
+
+    font-size: 1.2rem;
+
+    color: #c2185b;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 700px) {
+
+    .heart-stage {
+        margin-top: 20px;
+    }
+
+    .moon {
+
+        width: 50px;
+        height: 50px;
+
+        right: 4%;
+    }
+
+    .moon::after {
+
+        width: 50px;
+        height: 50px;
+
+        left: 10px;
+    }
+
+    .mini-heart:hover {
+
+        transform:
+            translate(-50%, -50%)
+            rotate(-45deg)
+            scale(1.8);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="scene">
+
+    <!-- ESTRELLAS -->
+
+    <div
+        class="stars"
+        id="stars">
+    </div>
+
+
+    <!-- LUNA -->
+
+    <div class="moon"></div>
+
+
+    <!-- ENCABEZADO -->
+
+    <header class="header" id="header">
+
+        <h1>
+
+            Todo esto es lo que siento por ti
+
+            <span>
+                corazón ❤️
+            </span>
+
+        </h1>
+
+        <p class="subtitle">
+
+          Hay sentimientos que son demasiado grandes para caber en unas cuantas palabras...
+
+	  Así que hice un pequeño intento de ponerlos en cada uno de estos corazoncitos. ❤️
+
+        </p>
+
+        <p class="instruction">
+
+           ✨ Toca cada corazoncito y descubre, poquito a poquito, todo lo que mi corazón guarda para ti. ✨
+
+        </p>
+
+    </header>
+
+
+    <!-- GRAN CORAZÓN -->
+
+    <main
+        class="heart-stage"
+        id="heartStage">
+
+        <div
+            class="heart-field"
+            id="heartField">
+        </div>
+
+    </main>
+
+
+    <!-- TEXTO FINAL -->
+
+    <footer class="bottom-text">
+
+        Hecho con muchísimo cariño
+        <span>♥</span>
+<br>
+        <br>
+Si llegaste hasta aquí, quizá ya entendiste que ninguno de los corazones anteriores estaba ahí por casualidad. Tal vez todavía no existan suficientes palabras para explicar todo lo que provocas en mí. Pero si tuviera que resumirlo de alguna manera, diría que ya no eres solamente alguien a quien quiero mucho. Eres alguien que quiero cuidar, alguien con quien quiero compartir, alguien que quiero seguir descubriendo, alguien que quiero tener en mis días buenos y en los no tan buenos, y alguien con quien quiero seguir construyendo recuerdos. Y quizá esa sea mi manera más bonita de decirte todo aquello que todavía no sé cómo poner en dos palabras. Porque, Fany... lo que siento por ti ya es mucho más grande que un simple “me gustas”. ❤️
+<br>
+<br>
+
+        <em>
+            Abraham Espinosa
+        </em>
+
+    </footer>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+    class="message-overlay"
+    id="messageOverlay">
+
+    <div class="message-card">
+
+        <button
+            class="close-btn"
+            id="closeBtn">
+
+            &times;
+
+        </button>
+
+        <div class="message-heart">
+            ❤
+        </div>
+
+        <h2>
+            Una cosita que quiero que sepas
+        </h2>
+
+        <p id="messageText"></p>
+
+        <div class="signature">
+
+            Con cariño,
+            <br>
+
+            Abraham ❤️
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   LISTA DE MENSAJES (107 Mensajes Únicos)
+========================================================= */
+
+const messages = [
+
+// =========================================================
+    // 1 - 20 | DULCES Y PERSONALES
+    // =========================================================
+
+    "Eres una de las coincidencias más bonitas que me ha regalado la vida. ❤️",
+
+    "Hay días que mejoran simplemente porque apareces tú en ellos.",
+
+    "Conocerte poquito a poquito se ha convertido en una de las partes más bonitas de mis días.",
+
+    "Hay algo en ti que hace que quiera seguir descubriéndote incluso después de cada conversación.",
+
+    "Me hace feliz saber que, entre tantas personas, nuestros caminos terminaron encontrándose.",
+
+    "Siempre termino sonriendo cuando veo aparecer tu nombre en mi celular.",
+
+    "Una de las cosas que más admiro de ti es esa manera tan tuya de seguir adelante incluso cuando los días no son fáciles.",
+
+    "Hay pequeños detalles tuyos que quizá para ti no significan mucho, pero que yo guardo con muchísimo cariño.",
+
+    "Me gusta muchísimo la confianza que poco a poco hemos ido construyendo entre nosotros.",
+
+    "Adoro esos momentos en los que simplemente estamos juntos y no necesitamos hacer nada extraordinario para pasarla bien.",
+
+    "Hay algo muy bonito en poder conocerte no solamente por lo que dices, sino también por esos pequeños gestos que haces sin darte cuenta.",
+
+    "Siempre me hace sonreír recordar alguna de nuestras primeras conversaciones y pensar en todo lo que ha pasado desde entonces.",
+
+    "Quizá tú no lo notes, pero hay veces en las que una pequeña sonrisa tuya puede cambiarme completamente el ánimo.",
+
+    "Una de las cosas que más disfruto de nosotros es que podemos pasar de una conversación seria a estar diciendo alguna tontería en cuestión de segundos. 😂❤️",
+
+    "Me hace feliz saber que puedo ser yo mismo contigo y sentir que no tengo que fingir nada.",
+
+    "Hay algo especial en saber que existe una persona a la que realmente me emociona volver a ver.",
+
+    "Si tuviera que elegir algo que nunca quisiera perder de nosotros, sería esa confianza que estamos aprendiendo a construir.",
+
+    "De ti he aprendido que algunas conexiones bonitas no necesitan tener prisa para volverse importantes.",
+
+    "Hay momentos contigo que parecen pequeños mientras suceden, pero después me descubro recordándolos con una sonrisa.",
+
+    "Me gusta la tranquilidad que siento cuando estoy contigo. Es de esas cosas que no necesitan demasiadas explicaciones. ❤️",
+
+
+    // =========================================================
+    // 21 - 40 | RECUERDOS Y MOMENTOS
+    // =========================================================
+
+    "Todavía guardo con muchísimo cariño el recuerdo de nuestra primera cita.",
+
+    "Aquella caminata contigo terminó convirtiéndose en uno de esos recuerdos que sé que voy a conservar durante muchísimo tiempo.",
+
+    "El chocolate caliente de aquel día probablemente nunca vuelva a saber igual después de haberlo compartido contigo.",
+
+    "Todavía recuerdo la lluvia, tu sonrisa y ese momento en el que terminamos compartiendo el paraguas.",
+
+    "Hay algo que siempre voy a recordar de aquel día: lo bonito que se sintió simplemente caminar contigo.",
+
+    "Nuestro primer abrazo duró unos segundos, pero dejó una impresión que todavía puedo recordar perfectamente.",
+
+    "Todavía puedo recordar tu perfume de aquella primera cita. Sí, ese detalle también se quedó conmigo. ❤️",
+
+    "Entre lluvia, caminatas y chocolate caliente, aquel día terminó siendo mucho más especial de lo que imaginaba.",
+
+    "Hay recuerdos que se quedan por lo que ocurrió y otros por cómo te hicieron sentir. Ese día contigo pertenece a los dos tipos.",
+
+    "A veces pienso en aquel primer encuentro y me causa gracia saber que en ese momento todavía no tenía idea de lo importante que llegarías a ser para mí.",
+
+    "Qué bonito fue coincidir contigo sin saber todo lo que todavía nos faltaba por vivir.",
+
+    "Hay una parte de mí que quisiera volver a vivir algunos de nuestros primeros momentos solamente para sentir otra vez esa emoción de estar descubriéndonos.",
+
+    "Me gusta recordar cómo poco a poco empezamos a sentirnos más cómodos estando juntos.",
+
+    "Una de esas cosas que guardo con especial cariño son todas esas pequeñas veces en las que terminamos riéndonos por alguna tontería.",
+
+    "Nunca pensé que una persona que conocí de una manera tan inesperada terminaría formando parte de tantos pensamientos bonitos míos.",
+
+    "Cada recuerdo contigo tiene algo que lo hace diferente, aunque haya sido un momento completamente sencillo.",
+
+    "Hay momentos que no necesitan fotografías para quedarse guardados. Algunos simplemente se quedan aquí. ❤️",
+
+    "Cuando recuerdo todo lo que hemos vivido hasta ahora, me doy cuenta de cuánto ha cambiado mi manera de verte.",
+
+    "Lo bonito no ha sido solamente conocerte, sino ir descubriendo quién eres detrás de cada conversación.",
+
+    "Y pensar que todo comenzó simplemente porque nuestros caminos decidieron cruzarse.",
+
+
+    // =========================================================
+    // 41 - 60 | COSAS QUE HE DESCUBIERTO DE TI
+    // =========================================================
+
+    "Detrás de esa mujer seria existe una persona muchísimo más tierna de lo que quizá dejas ver al principio.",
+
+    "Esa combinación entre tu carácter fuerte y tu corazón sensible es una de las cosas que más admiro de ti.",
+
+    "He descubierto que tienes una manera muy particular de demostrar cariño, incluso cuando no utilizas muchas palabras.",
+
+    "Hay una sensibilidad en ti que aparece poquito a poquito, y me parece preciosa.",
+
+    "Me gusta descubrir esas partes de ti que solamente aparecen cuando te sientes realmente en confianza.",
+
+    "Una de las cosas que más me gustan de conocerte es descubrir cada pequeño pedacito de tu personalidad.",
+
+    "Quizá tú no lo notes, pero hay pequeños cambios en tu carita cuando me ves que me hacen sonreír muchísimo.",
+
+    "Hay una emoción muy particular que aparece en mí cuando sé que voy a verte.",
+
+    "Y sí, también noto esos pequeños momentos en los que parece que tú te emocionas al verme. Créeme, no pasan desapercibidos. ❤️",
+
+    "Cuando me dices 'mi niño precioso', probablemente no imaginas todo lo bonito que provocas en mí.",
+
+    "Y cuando me dices 'mi amor', esas dos palabras tan sencillas pueden cambiarme completamente el día.",
+
+    "Cada 'te quiero' que sale de ti tiene un valor enorme para mí porque sé que viene desde un lugar sincero.",
+
+    "Todavía me acuerdo de aquella vez que empezaste a decirme 'te quiero' y terminaste alargando la palabra. No tienes idea de lo tierna que me pareció esa forma tan tuya de decirlo.",
+
+    "Me gusta la manera en que poco a poco has ido dejando que conozca partes de ti que no cualquiera llega a ver.",
+
+    "Hay algo muy especial en saber que la confianza entre nosotros sigue creciendo con cada día que pasa.",
+
+    "Admiro mucho esa parte de ti que sigue siendo fuerte incluso cuando por dentro quizá solamente necesitas un poquito de cariño.",
+
+    "Me gusta poder estar ahí para ti sin intentar cambiar quién eres.",
+
+    "Quiero que siempre puedas sentir que conmigo puedes hablar, reír, estar seria, hacer tonterías o simplemente guardar silencio.",
+
+    "Una de las cosas más bonitas que he descubierto es que mientras más te conozco, más razones encuentro para admirarte.",
+
+    "Y mientras más te conozco, más bonito me parece haberte encontrado. ❤️",
+
+
+    // =========================================================
+    // 61 - 75 | POÉTICOS Y PROFUNDOS
+    // =========================================================
+
+    "Entre tantos caminos, tantas personas y tantas posibilidades, qué bonito que la vida haya hecho coincidir los nuestros.",
+
+    "En el mapa de mis días favoritos siempre termina apareciendo algún lugar donde estás tú.",
+
+    "Si el tiempo pudiera hablar, creo que diría que cada minuto a tu lado merece quedarse un poquito más.",
+
+    "Hay personas que llegan a tu vida como una casualidad y terminan convirtiéndose en una parte importante de tu historia.",
+
+    "Contigo entendí que algunas historias bonitas no necesitan comenzar de manera perfecta para terminar siendo especiales.",
+
+    "Hay encuentros que parecen pequeños al principio y terminan cambiando muchísimo más de lo que imaginabas.",
+
+    "Tú llegaste sin hacer demasiado ruido y, poquito a poquito, terminaste ocupando un lugar enorme en mi corazón.",
+
+    "Hay sentimientos que no aparecen de golpe; crecen despacio, entre conversaciones, miradas, abrazos y pequeños momentos.",
+
+    "Lo que más bonito me parece de nosotros es que todavía tenemos muchísimo por descubrir.",
+
+    "Si pudiera guardar algunos momentos del tiempo, definitivamente pondría varios contigo dentro.",
+
+    "Hay algo hermoso en saber que todavía existen primeras veces que nos faltan por vivir juntos.",
+
+    "No sé qué caminos nos esperan, pero sí sé que me hace ilusión descubrir algunos de ellos contigo.",
+
+    "Hay personas que simplemente pasan por tu vida y hay otras que hacen que quieras quedarte un poquito más.",
+
+    "Quizá la vida no avisa cuando está a punto de regalarte una persona importante. Simplemente la pone frente a ti.",
+
+    "Y qué bonito ha sido descubrir que aquella coincidencia terminó convirtiéndose en algo que significa tanto para mí. ❤️",
+
+
+    // =========================================================
+    // 76 - 88 | CÁLIDOS, CÓMPLICES Y JUGUETONES
+    // =========================================================
+
+    "A ver, Fany... ¿tú sabías que sonreír así debería tener algún tipo de multa? Porque yo no puedo concentrarme después. 😂❤️",
+
+    "Confieso algo: a veces abro el celular, veo tu nombre y automáticamente se me acomoda la cara de menso. 😂",
+
+    "No sé qué clase de truco haces, pero apareces en mis pensamientos con una frecuencia bastante sospechosa.",
+
+    "Tengo una teoría: probablemente eres responsable de una cantidad ridícula de mis sonrisas diarias.",
+
+    "Esto oficialmente no cuenta como obsesión... todavía. 😂❤️",
+
+    "Si algún día me ves sonriendo solo mientras veo el celular, probablemente ya sabes quién fue.",
+
+    "Hay algo que me preocupa seriamente: cada vez me gustas más y todavía no encuentro el botón de pausa.",
+
+    "Fany, te informo que has sido acusada de hacer que alguien piense demasiado en ti. La evidencia es abrumadora.",
+
+    "Si sigues siendo tan linda, voy a tener que presentar una queja formal... aunque probablemente la termine retirando después de darte un abrazo.",
+
+    "No sé quién te dio permiso de volverte tan importante para mí, pero definitivamente quiero hablar con esa persona para agradecerle.",
+
+    "A veces intento comportarme como una persona seria y luego apareces tú y se me olvida completamente el plan.",
+
+    "Tengo algo importante que decirte: eres oficialmente una de mis distracciones favoritas.",
+
+    "No quiero presumir, pero tengo una novia preciosa. Sí, estoy hablando de ti. 😌❤️",
+
+    "Dato científico completamente comprobado por mí: pensar en ti mejora considerablemente mi estado de ánimo.",
+
+    "Hay algo que todavía no entiendo: ¿cómo puede una persona caber tanto en mis pensamientos sin pagar renta? 😂❤️",
+
+
+    // =========================================================
+    // 89 - 98 | LOS ÚLTIMOS CORAZONES
+    // =========================================================
+
+    "No sé en qué momento pasaste de ser una persona que conocí a ser alguien que espero ver con muchísimas ganas.",
+
+    "Yo solo quería conocerte un poquito... y mírame ahora, llenando una página entera de corazoncitos sobre ti. 😂❤️",
+
+    "Hay una parte de mí que se emociona cada vez que imagina una nueva aventura contigo.",
+
+    "Quiero seguir conociendo tus gustos, tus sueños, tus historias, tus manías y todas esas pequeñas cosas que te hacen ser tú.",
+
+    "Quiero que aprendamos juntos a querernos de la manera en que los dos necesitamos sentirnos queridos.",
+
+    "Respetar tu espacio nunca ha significado querer alejarme; significa valorar la confianza que me das cada vez que me permites acercarme un poquito más.",
+
+    "Cuando imagino un futuro contigo, lo curioso es que no siento miedo; siento una ilusión muy bonita.",
+
+    "Hay personas con las que quieres vivir momentos y hay otras con las que quieres construir recuerdos. Yo quiero lo segundo contigo.",
+
+    "Si algún día vuelves a esta página, quiero que recuerdes algo muy sencillo: cada uno de estos corazones fue pensado especialmente para ti. ❤️",
+
+    "Y si después de 98 corazones todavía no te quedó claro... Fany, me haces increíblemente feliz. ❤️"
+
+
+];
+
+
+/* =========================================================
+   ELEMENTOS
+========================================================= */
+
+const stars =
+    document.getElementById("stars");
+
+const field =
+    document.getElementById("heartField");
+
+const stage =
+    document.getElementById("heartStage");
+
+const overlay =
+    document.getElementById("messageOverlay");
+
+const messageText =
+    document.getElementById("messageText");
+
+const closeBtn =
+    document.getElementById("closeBtn");
+
+
+/* =========================================================
+   ESTRELLAS DE FONDO
+========================================================= */
+
+function createStars() {
+
+    stars.innerHTML = "";
+
+    for (let i = 0; i < 120; i++) {
+
+        const star =
+            document.createElement("div");
+
+        star.className = "star";
+
+        star.style.left =
+            Math.random() * 100 + "%";
+
+        star.style.top =
+            Math.random() * 100 + "%";
+
+        const size =
+            Math.random() * 2.5 + 1;
+
+        star.style.width =
+            size + "px";
+
+        star.style.height =
+            size + "px";
+
+        star.style.setProperty(
+            "--duration",
+            (Math.random() * 3 + 2) + "s"
+        );
+
+        star.style.animationDelay =
+            Math.random() * 3 + "s";
+
+        stars.appendChild(star);
+    }
+}
+
+
+/* =========================================================
+   ECUACIÓN PARAMÉTRICA DEL CORAZÓN
+========================================================= */
+
+function getHeartPoint(t, scale) {
+
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+    return {
+        x: x * scale,
+        y: y * scale
+    };
+
+}
+
+
+/* =========================================================
+   GENERACIÓN BIEN ESPACIADA Y DESAMONTONADA DEL CORAZÓN
+========================================================= */
+
+function generateHeart() {
+
+    field.innerHTML = "";
+
+    const stageWidth = stage.clientWidth;
+    const heartHeight = stageWidth * 0.90;
+
+    stage.style.height = heartHeight + "px";
+
+    const centerX = stageWidth / 2;
+    const centerY = heartHeight * 0.45;
+
+    const baseScale = stageWidth / 36;
+
+    // Capas espaciadas uniformemente
+    const layers = [
+        { count: 48, scaleFactor: 1.0 },
+        { count: 40, scaleFactor: 0.78 },
+        { count: 32, scaleFactor: 0.56 },
+        { count: 24, scaleFactor: 0.35 },
+        { count: 12, scaleFactor: 0.16 }
+    ];
+
+    const rawPoints = [];
+
+    layers.forEach(layer => {
+        const step = (Math.PI * 2) / layer.count;
+        const offset = Math.random() * Math.PI; 
+
+        for (let i = 0; i < layer.count; i++) {
+            const t = i * step + offset;
+            const pt = getHeartPoint(t, baseScale * layer.scaleFactor);
+
+            rawPoints.push({
+                x: centerX + pt.x,
+                y: centerY + pt.y
+            });
+        }
+    });
+
+    // Filtro para eliminar puntos demasiado cercanos (evita que el centro se encime)
+    const points = [];
+    const minDistance = 18; // Distancia mínima en píxeles
+
+    rawPoints.forEach(pt => {
+        const tooClose = points.some(existingPt => {
+            const dx = existingPt.x - pt.x;
+            const dy = existingPt.y - pt.y;
+            return Math.sqrt(dx * dx + dy * dy) < minDistance;
+        });
+
+        if (!tooClose) {
+            points.push(pt);
+        }
+    });
+
+    const totalPoints = points.length;
+
+    // 1. Garantizamos que TODOS los 107 mensajes aparezcan al menos una vez
+    const shuffledUniqueMessages = [...messages].sort(() => Math.random() - 0.5);
+
+    // 2. Asignación directa y relleno
+    const finalAssignments = [];
+
+    for (let i = 0; i < totalPoints; i++) {
+        if (i < shuffledUniqueMessages.length) {
+            finalAssignments.push(shuffledUniqueMessages[i]);
+        } else {
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            finalAssignments.push(messages[randomIndex]);
+        }
+    }
+
+    // Mezclamos asignaciones
+    finalAssignments.sort(() => Math.random() - 0.5);
+
+    // Renderizar corazones
+    for (let i = 0; i < totalPoints; i++) {
+        createHeartElement(
+            points[i],
+            stageWidth,
+            heartHeight,
+            finalAssignments[i]
+        );
+    }
+
+
+    /*
+        =====================================================
+        BRILLITOS AMBIENTALES
+        =====================================================
+    */
+
+    for (let i = 0; i < 30; i++) {
+
+        const randomLayer = Math.random() * 0.95;
+        const t = Math.random() * Math.PI * 2;
+        const pt = getHeartPoint(t, baseScale * randomLayer);
+
+        const spark = document.createElement("div");
+        spark.className = "spark";
+
+        spark.style.left = ((centerX + pt.x) / stageWidth) * 100 + "%";
+        spark.style.top = ((centerY + pt.y) / heartHeight) * 100 + "%";
+
+        spark.style.setProperty("--x", (Math.random() * 16 - 8) + "px");
+        spark.style.setProperty("--y", -(Math.random() * 18) + "px");
+        spark.style.setProperty("--duration", (2.8 + Math.random() * 3) + "s");
+
+        field.appendChild(spark);
+    }
+
+}
+
+
+/* =========================================================
+   CREAR CORAZONCITO
+========================================================= */
+
+function createHeartElement(pos, width, height, message) {
+
+    const heart = document.createElement("div");
+    heart.className = "mini-heart";
+
+    heart.style.left = (pos.x / width) * 100 + "%";
+    heart.style.top = (pos.y / height) * 100 + "%";
+
+    const size = Math.floor(Math.random() * 3) + 11;
+
+    heart.style.setProperty("--size", size + "px");
+
+    const hue = 330 + Math.random() * 26;
+    const light = 55 + Math.random() * 15;
+
+    heart.style.setProperty("--light", `hsl(${hue}, 100%, ${light + 15}%)`);
+    heart.style.setProperty("--dark", `hsl(${hue}, 90%, ${light - 10}%)`);
+    heart.style.setProperty("--glow", `hsla(${hue}, 100%, 65%, .65)`);
+
+    heart.style.setProperty("--duration", (2.5 + Math.random() * 2.5).toFixed(2) + "s");
+    heart.style.setProperty("--delay", -(Math.random() * 4).toFixed(2) + "s");
+
+    heart.addEventListener("click", () => openMessage(message));
+
+    field.appendChild(heart);
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openMessage(message) {
+
+    messageText.textContent = message;
+    overlay.classList.add("active");
+
+}
+
+
+function closeMessage() {
+
+    overlay.classList.remove("active");
+
+}
+
+
+closeBtn.addEventListener("click", closeMessage);
+
+overlay.addEventListener("click", event => {
+    if (event.target === overlay) {
+        closeMessage();
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeMessage();
+    }
+});
+
+
+/* =========================================================
+   INICIALIZACIÓN
+========================================================= */
+
+function init() {
+    createStars();
+    generateHeart();
+}
+
+window.addEventListener("load", init);
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        generateHeart();
+    }, 250);
+});
+
+</script>
+
+</body>
+</html>
